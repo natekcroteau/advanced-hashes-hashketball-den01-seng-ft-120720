@@ -213,7 +213,13 @@ def big_shoe_rebounds
 end
 
 def most_points_scored
-  most_points = 0 
+    most_points = 0                             #variable to store the biggest shoe value as iterating 
+  rebounds = 0                                #variable to store the rebound correlated to biggest_shoe as iterating
+  game_hash.each do |home_or_away, team_hash| #home or away teams, team_hash is the team information hash
+  team_hash[:players].each do |player|        #iterate through each :player hash
+     if player[:shoe] > biggest_shoe          #and see if that players :shoe value is > the last iteration starting with 0 
+      biggest_shoe = player[:shoe]            #if true then store that players :shoe value in biggest_shoe variable 
+      rebounds = player[:rebounds]
   
 end
 
