@@ -154,9 +154,9 @@ end
 
 
 def team_colors(team)
-  game_hash.each do |home_or_away,team_hash|
-    if team_hash[:team_name] == team
-      return team_hash[:colors]
+  game_hash.each do |home_or_away,team_hash|  #home or away teams, team_hash is the team information hash
+    if team_hash[:team_name] == team          #if the team name contained within team_hash == argued team 
+      return team_hash[:colors]               #then return the :colors value from team_hash
     end
   end
 end
@@ -164,33 +164,33 @@ end
 
 
 def team_names
-  teams = []
-  teams[0] = game_hash[:home][:team_name]
-  teams[1] = game_hash[:away][:team_name]
-  teams
+  teams = []                                 #new empty array 
+  teams[0] = game_hash[:home][:team_name]    #for index 0 store the home teams team_name
+  teams[1] = game_hash[:away][:team_name]    #for index 1 store the away teams team_name
+  teams                                      #call the final array
 end
 
 
 
 def player_numbers(team)
-  jersey_numbers = []
-  game_hash.each do |home_or_away,team_hash|
-    if team_hash[:team_name] == team 
-      team_hash[:players].each do |player|
-        jersey_numbers.push(player[:number])
+  jersey_numbers = []                         #new empty array
+  game_hash.each do |home_or_away,team_hash|  #home or away teams, team_hash is the team information hash
+    if team_hash[:team_name] == team          #if the :team_name value == the argued team
+      team_hash[:players].each do |player|    #then iterate through each :players hash and  
+        jersey_numbers.push(player[:number])  #place that player hash jersey number into the new array 
       end 
     end
   end 
-jersey_numbers
+jersey_numbers                                #then return the jersey numbers of that team 
 end
 
 
 
-def player_stats(playername)
-  game_hash.each do |home_or_away, team_hash|
-  team_hash[:players].each do |player|     
-     if player[:player_name] == playername
-       return player
+def player_stats(playername)                   
+  game_hash.each do |home_or_away, team_hash|  #home or away teams, team_hash is the team information hash
+  team_hash[:players].each do |player|         #iterate through each :player hash 
+     if player[:player_name] == playername     #and if the :player_name == the argued playername
+       return player                           #then return that player hash
       end
     end 
   end 
@@ -198,16 +198,29 @@ end
 
 
 
-def big_shoe_rebounds
-  biggest_shoe = 0 
-  rebounds = 0 
-  game_hash.each do |home_or_away, team_hash|
-  team_hash[:players].each do |player|     
-     if player[:shoe] > biggest_shoe
-      biggest_shoe = player[:shoe]
-      rebounds = player[:rebounds]
-   end
+def big_shoe_rebounds 
+  biggest_shoe = 0                            #variable to store the biggest shoe value as iterating 
+  rebounds = 0                                #variable to store the rebound correlated to biggest_shoe as iterating
+  game_hash.each do |home_or_away, team_hash| #home or away teams, team_hash is the team information hash
+  team_hash[:players].each do |player|        #iterate through each :player hash
+     if player[:shoe] > biggest_shoe          #and see if that players :shoe value is > the last iteration starting with 0 
+      biggest_shoe = player[:shoe]            #if true then store that players :shoe value in biggest_shoe variable 
+      rebounds = player[:rebounds]            #and store that players :rebounds value in rebound variable 
+   end                                        #looping through and overwriting if line 206 is true 
   end
  end
- rebounds
+ rebounds                                     #call the final rebounds after iterating through each 
 end
+
+def most_points_scored
+end
+
+def winning_team
+end
+
+def player_with_longest_name
+end
+
+def long_name_steals_a_ton?
+end
+  
